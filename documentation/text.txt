@@ -5,3 +5,5 @@ Scale Factor : If the face in the image(frame) to big then the scale factor deci
 Min Neighbours : Minimum number of overlapping rectangles that must be found in the same area to confidently label it as a detected face. Higher value means less false positives.
 
 Min Size : Minimum pixel grid from which the face size must be larger. Face size smaller than them will not be detected.
+
+cv2.equalizeHist() : Improves the contrast of the image to detect faces better.
