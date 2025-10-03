@@ -6,4 +6,4 @@ Min Neighbours : Minimum number of overlapping rectangles that must be found in 
 
 Min Size : Minimum pixel grid from which the face size must be larger. Face size smaller than them will not be detected.
 
-cv2.equalizeHist() : Improves the contrast of the image to detect faces better.
+cv2.equalizeHist() : Improves the contrast of the image and helps the computer to detect faces better.
