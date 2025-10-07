@@ -1,6 +1,7 @@
 import cv2
 from cv2 import waitKey
 import os
+import numpy
 
 faceDetector  = cv2.CascadeClassifier('../assets/haarcascade_frontalface_default.xml')
 eyeDetector = cv2.CascadeClassifier('../assets/haarcascade_eye.xml')
