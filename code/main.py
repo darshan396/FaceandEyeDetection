@@ -2,8 +2,8 @@ import cv2
 from cv2 import waitKey
 import os
 
-faceDetector  = cv2.CascadeClassifier('/home/ghost/Coding/detection/assets/haarcascade_frontalface_default.xml')
-eyeDetector = cv2.CascadeClassifier('/home/ghost/Coding/detection/assets/haarcascade_eye.xml')
+faceDetector  = cv2.CascadeClassifier('../assets/haarcascade_frontalface_default.xml')
+eyeDetector = cv2.CascadeClassifier('../assets/haarcascade_eye.xml')
 
 video = cv2.VideoCapture(0)
 savedImagePath = os.path.join(".." , "pics")
