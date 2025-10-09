@@ -34,6 +34,7 @@ while True:
             if not name:
                     print("Are you a ghost? Enter valid name please.")
 
+
         personPath = os.path.join(imgRootPath , name)
         os.makedirs(personPath, exist_ok=True)
 
