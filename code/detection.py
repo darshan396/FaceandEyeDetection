@@ -2,15 +2,12 @@ import cv2
 from cv2 import waitKey
 import os
 import numpy
-
+from identification import compare_faces
 faceDetector  = cv2.CascadeClassifier('../assets/haarcascade_frontalface_default.xml')
 eyeDetector = cv2.CascadeClassifier('../assets/haarcascade_eye.xml')
-
 video = cv2.VideoCapture(0)
-
 # root directory to store images
 imgRootPath = os.path.join(".." , "pics")
-
 while True:
     val , frame = video.read()
     grayFrame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
@@ -18,7 +15,6 @@ while True:
     grayFrame = cv2.GaussianBlur(grayFrame , (5,5) , 0)
     detectedFace = faceDetector.detectMultiScale(grayFrame , scaleFactor=1.02, minNeighbors=6, minSize=(60,60))
     detectedEyes = eyeDetector.detectMultiScale(grayFrame, scaleFactor=1.1, minNeighbors=8,minSize=(30,30) , maxSize=(80,80))
-
     for face in detectedFace:
         x, y, w, h = face
         cv2.rectangle(frame, (x,y),(x+w , y+h) ,(0,255,0),2)
@@ -49,3 +45,9 @@ while True:
 
 video.release()
 cv2.destroyAllWindows()
+score = compare_faces(reference_path, current_path)
+
+if score >= 0.75:
+    print(f"Attendance marked for {name}")
+else:
+    print(f"Face matching failed....(no attendance given) to {name}")
