@@ -27,24 +27,24 @@ while True:
 
     cv2.imshow("Frame" , frame)
     cv2.resizeWindow("Frame" , 1280,720)
-    if cv2.waitKey(25) & 0xFF == ord('c'):
+    if cv2.waitKey(20) & 0xFF == ord('c'):
         name = ""
         while not name.strip() :
             name = input("Your Name: ").strip()
             if not name:
                     print("Are you a ghost? Enter valid name please.")
 
-            os.makedirs(f"../pics{name}" , exist_ok=True)
-            personPath = os.path.join("imgRootPath" , "name")
+        personPath = os.path.join(imgRootPath , name)
+        os.makedirs(personPath, exist_ok=True)
 
-        for face in detectedFace:
+        for index , face in enumerate(detectedFace):
             x , y , w,  h = face
-            detFace = frame[ y:y+h , x:x+h]
-            cv2.imwrite(personPath , detFace)
+            detFace = frame[ y:y+h , x:x+w]
+            filename = os.path.join(personPath , f"image_{index}.png")
+            cv2.imwrite(filename , detFace)
             print("Saved!")
-            count += 1
 
-    if waitKey(25) & 0xFF == ord('q'):
+    if waitKey(20) & 0xFF == ord('q'):
         break
 
 video.release()
