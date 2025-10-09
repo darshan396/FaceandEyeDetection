@@ -7,8 +7,10 @@ faceDetector  = cv2.CascadeClassifier('../assets/haarcascade_frontalface_default
 eyeDetector = cv2.CascadeClassifier('../assets/haarcascade_eye.xml')
 
 video = cv2.VideoCapture(0)
-savedImagePath = os.path.join(".." , "pics")
-count = 0
+
+# root directory to store images
+imgRootPath = os.path.join(".." , "pics")
+
 while True:
     val , frame = video.read()
     grayFrame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
@@ -22,18 +24,23 @@ while True:
         cv2.rectangle(frame, (x,y),(x+w , y+h) ,(0,255,0),2)
     for (x,y, w, h) in detectedEyes:
         cv2.rectangle(frame, (x,y) , (x+w , y+h), (0,0,255),thickness=1)
-    filename = os.path.join(savedImagePath , f"image_{count}.png")
-    count += 1
 
     cv2.imshow("Frame" , frame)
     cv2.resizeWindow("Frame" , 1280,720)
     if cv2.waitKey(25) & 0xFF == ord('c'):
-        filename = os.path.join(savedImagePath, f"image_{count}.png")
+        name = ""
+        while not name.strip() :
+            name = input("Your Name: ").strip()
+            if not name:
+                    print("Are you a ghost? Enter valid name please.")
+
+            os.makedirs(f"../pics{name}" , exist_ok=True)
+            personPath = os.path.join("imgRootPath" , "name")
 
         for face in detectedFace:
             x , y , w,  h = face
             detFace = frame[ y:y+h , x:x+h]
-            cv2.imwrite(filename , detFace)
+            cv2.imwrite(personPath , detFace)
             print("Saved!")
             count += 1
 
