@@ -1,1 +1,1 @@
-# Face and Eye Detection using OpenCV
+# Face Detection and Identification (like facial attendance management) using OpenCV
