@@ -1,7 +1,9 @@
 import os
 import cv2
 import numpy as np
-def compare_faces(img_path1:str,img_path2:str)->float:
+
+
+def compareFaces(img_path1:str,img_path2:str)->float:
     img1=cv2.imread(img_path1)
     img2=cv2.imread(img_path2)
     if img1 is None or img2 is None:
@@ -9,7 +11,7 @@ def compare_faces(img_path1:str,img_path2:str)->float:
     img1_grayscale = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     img2_grayscale = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
     img1_grayscale = cv2.resize(img1_grayscale, (300, 300))
-    img2_grayscale = cv2.resize(img2_grayscale, (300, 00))
+    img2_grayscale = cv2.resize(img2_grayscale, (300, 300))
     hist1, _ = np.histogram(img1_grayscale.ravel(), bins=256, range=(0, 256))
     hist2, _ = np.histogram(img2_grayscale.ravel(), bins=256, range=(0, 256))
     hist1=hist1/np.sum(hist1)
