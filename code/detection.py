@@ -135,11 +135,12 @@ def identifyPerson():
 
                 confidence = 0.45
                 if best_score > confidence:
-                    print(f"Marked attendance for : {best_match_name} . || Similarity : {best_score:.2f}")
+                    best_match_name = best_match_name.capitalize()
+                    print(f"Marked attendance for : {best_match_name} || Similarity : {100*best_score:.2f}%")
                     color = (0,255,0)
 
                 else:
-                    print(f"Not Found || Similarity{best_score:.2f}")
+                    print(f"Not Found || Similarity{100*best_score:.2f}%")
                     color = (0,0,255)
 
         elif waitKey(20) & 0xFF == ord('q'):
